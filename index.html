@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<!--
+  DESIGN READ: personal editorial site for a researcher-writer (writing, CV, photography).
+  Dials: DESIGN_VARIANCE 6 (clean + asymmetric), MOTION_INTENSITY 5 (hover + scroll), VISUAL_DENSITY 2 (spacious).
+  Type: system-font stack (no web-font requests, no layout shift). Serif (Georgia) is used only for
+  prose; sans for structure; mono for meta. Palette is warm monochrome; the photographs carry the
+  only color, revealed on hover. Motion is IntersectionObserver + CSS only (no scroll listeners).
+
+  ============================  CUSTOMISE  (search "EDIT" to jump)  ============================
+  1. Name .............. document <title>, the .brand wordmark, the hero <h1>, footer, favicon initials
+  2. Bio line .......... .hero__intro (one line, keep it short)
+  3. Contact ........... every mailto: link, and the social links in the footer
+  4. Writing ........... the <li class="entry"> items in #writing (point each href at a post or PDF)
+  5. Photos ............ swap the picsum URLs in #photos for your own images (data-full = the large one)
+  6. CV ................ the #cv entries, and point "Download CV" at your real cv.pdf
+  Styling (palette, --radius, fonts) lives in styles.css. Behaviour lives in script.js.
+  =============================================================================================
+-->
+
+<title>Mara Vesely</title> <!-- EDIT: your name -->
+<meta name="description" content="Mara Vesely. Research writing, a CV, and photographs." /> <!-- EDIT -->
+<meta name="theme-color" content="#fafaf8" media="(prefers-color-scheme: light)" />
+<meta name="theme-color" content="#17171a" media="(prefers-color-scheme: dark)" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Mara Vesely" />
+<meta property="og:description" content="Research writing, a CV, and photographs." />
+<!-- <meta property="og:url" content="https://yourusername.github.io" /> -->
+
+<!-- Simple monogram favicon (initials). EDIT the letters. -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231d1d1b'/%3E%3Ctext x='16' y='21' font-family='Georgia,serif' font-size='13' fill='%23fafaf8' text-anchor='middle'%3EMV%3C/text%3E%3C/svg%3E" />
+
+<script>
+  /* Set theme from system preference before paint (avoids a flash). */
+  (function () { try { var d = matchMedia('(prefers-color-scheme: dark)').matches; document.documentElement.setAttribute('data-theme', d ? 'dark' : 'light'); } catch (e) {} })();
+</script>
+
+<link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+<a class="skip" href="#writing">Skip to content</a>
+<span id="top-sentinel" aria-hidden="true"></span>
+
+<header class="nav" id="nav">
+  <div class="wrap nav__in">
+    <a class="brand" href="#page-top">Mara Vesely</a> <!-- EDIT: name -->
+    <div class="nav__right">
+      <nav class="nav__links" aria-label="Sections">
+        <a class="link" href="#writing">Writing</a>
+        <a class="link" href="#photos">Photos</a>
+        <a class="link" href="#cv">CV</a>
+      </nav>
+      <button class="toggle" id="toggle" aria-label="Switch to dark theme">Dark</button>
+    </div>
+  </div>
+</header>
+
+<main id="page-top">
+
+  <!-- ============ HERO (asymmetric, not centered) ============ -->
+  <section class="hero">
+    <div class="wrap hero__grid">
+      <div>
+        <!-- EDIT: your name -->
+        <h1 class="hero__name reveal">Mara<br>Vesely</h1>
+        <!-- EDIT: one short line. Keep it plain and specific. -->
+        <p class="hero__intro reveal">Researcher and writer working on decision-making. I keep my papers, a CV, and photographs here.</p>
+        <div class="hero__cta reveal">
+          <a class="btn btn--primary" href="#writing">Read the writing <span class="btn__a" aria-hidden="true">-&gt;</span></a>
+          <a class="btn" href="mailto:mara@example.com">Get in touch</a> <!-- EDIT: email -->
+        </div>
+      </div>
+      <!-- EDIT: swap for one of your photographs (or a portrait). -->
+      <div class="hero__media reveal">
+        <img src="https://picsum.photos/seed/vesely-hero/900/1120" width="900" height="1120" alt="A featured photograph." loading="eager" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WRITING (editorial index) ============ -->
+  <section id="writing">
+    <div class="wrap">
+      <div class="shead reveal">
+        <h2 class="h2">Writing</h2>
+        <span class="count">Selected</span>
+      </div>
+      <!-- EDIT each entry. Point href at a post page or a PDF. -->
+      <ul class="entries">
+        <li class="entry reveal">
+          <a class="entry__a" href="#">
+            <span class="entry__year">2026</span>
+            <span>
+              <span class="entry__title">On the limits of preference elicitation</span>
+              <span class="entry__desc">Why asking people what they want breaks down once the options keep changing.</span>
+            </span>
+            <span class="entry__kind">Essay</span>
+          </a>
+        </li>
+        <li class="entry reveal">
+          <a class="entry__a" href="#">
+            <span class="entry__year">2025</span>
+            <span>
+              <span class="entry__title">How six teams decided under deadline</span>
+              <span class="entry__desc">A small observational study, and the shortcuts people reached for when time ran short.</span>
+            </span>
+            <span class="entry__kind">Paper</span>
+          </a>
+        </li>
+        <li class="entry reveal">
+          <a class="entry__a" href="#">
+            <span class="entry__year">2025</span>
+            <span>
+              <span class="entry__title">Reading notes on active inference</span>
+              <span class="entry__desc">What the free-energy framework does and does not explain, in plainer language.</span>
+            </span>
+            <span class="entry__kind">Notes</span>
+          </a>
+        </li>
+        <li class="entry reveal">
+          <a class="entry__a" href="#">
+            <span class="entry__year">2024</span>
+            <span>
+              <span class="entry__title">Why I keep a research journal</span>
+              <span class="entry__desc">The habit that changed how I work, with a template you are welcome to copy.</span>
+            </span>
+            <span class="entry__kind">Essay</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ PHOTOS (asymmetric grid, color on hover) ============ -->
+  <section id="photos" style="padding-top:var(--section)">
+    <div class="wrap">
+      <div class="shead reveal">
+        <h2 class="h2">Photographs</h2>
+      </div>
+      <!-- EDIT: replace each src with your own image. data-full points at a larger version for the lightbox. -->
+      <div class="grid reveal" id="grid">
+        <button class="photo p1" data-full="https://picsum.photos/seed/mv-a/1600/2000"><img src="https://picsum.photos/seed/mv-a/900/1120" width="900" height="1120" alt="Photograph one." loading="lazy" /></button>
+        <button class="photo p2" data-full="https://picsum.photos/seed/mv-b/1400/1000"><img src="https://picsum.photos/seed/mv-b/800/560" width="800" height="560" alt="Photograph two." loading="lazy" /></button>
+        <button class="photo p3" data-full="https://picsum.photos/seed/mv-c/1400/1000"><img src="https://picsum.photos/seed/mv-c/800/560" width="800" height="560" alt="Photograph three." loading="lazy" /></button>
+        <button class="photo p4" data-full="https://picsum.photos/seed/mv-d/1400/1000"><img src="https://picsum.photos/seed/mv-d/800/560" width="800" height="560" alt="Photograph four." loading="lazy" /></button>
+        <button class="photo p5" data-full="https://picsum.photos/seed/mv-e/1600/1000"><img src="https://picsum.photos/seed/mv-e/1000/620" width="1000" height="620" alt="Photograph five." loading="lazy" /></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CV (grouped) ============ -->
+  <section id="cv" style="padding-top:var(--section);padding-bottom:var(--section)">
+    <div class="wrap">
+      <div class="shead reveal">
+        <h2 class="h2">Curriculum vitae</h2>
+      </div>
+
+      <div class="cv__group reveal">
+        <div class="cv__label">Experience</div>
+        <div class="cv__list">
+          <div>
+            <div class="cv__role">Research Scientist</div>
+            <div class="cv__meta">Decision Research Group, 2023-2026</div> <!-- EDIT -->
+            <p class="cv__note">Studying how people combine evidence under uncertainty, and how tools can help rather than crowd out judgment.</p>
+          </div>
+          <div>
+            <div class="cv__role">Doctoral Researcher</div>
+            <div class="cv__meta">University of Vienna, 2020-2023</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cv__group reveal">
+        <div class="cv__label">Education</div>
+        <div class="cv__list">
+          <div>
+            <div class="cv__role">PhD, Cognitive Science</div>
+            <div class="cv__meta">University of Vienna, 2016-2020</div>
+          </div>
+          <div>
+            <div class="cv__role">BSc, Psychology</div>
+            <div class="cv__meta">University of Graz, 2013-2016</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cv__cta reveal">
+        <!-- EDIT: point at your real PDF, e.g. cv.pdf placed in the repo root -->
+        <a class="btn btn--primary" href="cv.pdf">Download CV <span class="btn__a" aria-hidden="true">-&gt;</span></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============ FOOTER / CONTACT ============ -->
+<footer class="foot">
+  <div class="wrap">
+    <h2 class="foot__title reveal">Get in touch</h2>
+    <!-- EDIT: email (href and text) -->
+    <a class="foot__mail link reveal" href="mailto:mara@example.com">mara@example.com</a>
+    <div class="foot__row reveal">
+      <!-- EDIT: your links (remove any you don't use) -->
+      <a class="link" href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
+      <a class="link" href="https://scholar.google.com/" target="_blank" rel="noopener">Scholar</a>
+      <a class="link" href="https://bsky.app/" target="_blank" rel="noopener">Bluesky</a>
+    </div>
+    <div class="foot__legal">© <span id="year"></span> Mara Vesely</div> <!-- EDIT: name -->
+  </div>
+</footer>
+
+<!-- lightbox -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photograph">
+  <button class="lightbox__close" id="lbClose" aria-label="Close">×</button>
+  <img id="lbImg" src="" alt="" />
+</div>
+
+<script src="script.js" defer></script>
+</body>
+</html>
