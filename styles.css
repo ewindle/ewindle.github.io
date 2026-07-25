@@ -11,7 +11,7 @@
   --section: clamp(5.5rem, 11vw, 9.5rem);
   --ease: cubic-bezier(.16,1,.3,1);
 }
-:root[data-theme="light"]{
+:root{
   --bg:#fafaf8;          /* warm off-white */
   --bg-2:#ffffff;
   --ink:#1d1d1b;         /* charcoal, never pure black */
@@ -21,17 +21,6 @@
   --line:rgba(29,29,27,.10);
   --line-strong:rgba(29,29,27,.16);
   --card-hover:0 2px 8px rgba(29,29,27,.05);
-}
-:root[data-theme="dark"]{
-  --bg:#17171a;
-  --bg-2:#1e1e22;
-  --ink:#edede9;
-  --ink-hover:#cfcfca;
-  --ink-2:#a2a29a;
-  --ink-3:#6e6e68;
-  --line:rgba(237,237,233,.13);
-  --line-strong:rgba(237,237,233,.22);
-  --card-hover:0 2px 10px rgba(0,0,0,.35);
 }
 
 /* ----------------------------------  BASE  ---------------------------------- */
@@ -93,12 +82,9 @@ ul{margin:0;padding:0;list-style:none}
 .nav__links{display:flex;gap:clamp(1rem,3vw,1.9rem)}
 .nav__links a{font-size:.92rem;color:var(--ink-2)}
 .nav__links a:hover,.nav__links a.active{color:var(--ink)}
-.toggle{font-family:var(--font-mono);font-size:.76rem;letter-spacing:.02em;
-  background:none;border:none;color:var(--ink-2);cursor:pointer;padding:.3rem .1rem}
-.toggle:hover{color:var(--ink)}
 
 /* ----------------------------------  HERO  ---------------------------------- */
-.hero{padding-top:clamp(3rem,7vw,5.5rem);padding-bottom:var(--section)}
+.hero{padding-top:clamp(3rem,7vw,5.5rem);padding-bottom:0}
 .hero__grid{display:grid;grid-template-columns:1.12fr .88fr;gap:clamp(2rem,5vw,4.5rem);
   align-items:center}
 .hero__name{font-size:clamp(3rem,2rem + 6.5vw,6.2rem);letter-spacing:-.045em;line-height:.98}
@@ -203,4 +189,40 @@ html.js .reveal.in{opacity:1;transform:none}
   html,body{background:#fff;color:#000}
   html.js .reveal{opacity:1 !important;transform:none !important}
   a{color:#000;text-decoration:none}
+}
+
+/* ----------------------------------  SECTION RHYTHM  ---------------------------------- */
+.sec{padding-top:var(--section);padding-bottom:0}
+.section-cta{margin-top:clamp(2rem,4vw,3rem)}
+
+/* ----------------------------------  SUB-PAGE HEADER  ---------------------------------- */
+.page{padding-top:clamp(3rem,7vw,5rem);padding-bottom:var(--section)}
+.page__title{font-size:clamp(2.2rem,1.6rem + 3vw,4rem);letter-spacing:-.04em;line-height:1}
+.page__intro{font-family:var(--font-serif);color:var(--ink-2);
+  font-size:clamp(1.1rem,1rem + .6vw,1.4rem);line-height:1.45;max-width:48ch;margin-top:1.2rem}
+.page__back{display:inline-block;margin-top:clamp(2.5rem,5vw,4rem);
+  font-family:var(--font-mono);font-size:.82rem;color:var(--ink-2)}
+.page__back:hover{color:var(--ink)}
+
+/* ----------------------------------  WRITING ARCHIVE (grouped by year)  ---------------------------------- */
+.arch{margin-top:clamp(2.5rem,5vw,4rem)}
+.arch__group{display:grid;grid-template-columns:6rem 1fr;gap:clamp(1.5rem,4vw,3rem);
+  padding-block:clamp(1.8rem,3.5vw,2.6rem);border-top:1px solid var(--line)}
+.arch__year{font-family:var(--font-mono);font-size:.9rem;color:var(--ink-3);padding-top:.25rem}
+.arch__list{display:grid;gap:clamp(1.4rem,3vw,2rem)}
+.arch__list .entry{border:none}
+.arch__list .entry__a{grid-template-columns:1fr auto;padding:0}
+.arch__list .entry__year{display:none}
+
+/* ----------------------------------  CV DOCUMENT  ---------------------------------- */
+.cvdoc{margin-top:clamp(2.5rem,5vw,4rem)}
+.cvdoc__frame{width:100%;height:min(82vh,1040px);border:1px solid var(--line);
+  border-radius:var(--radius);background:var(--bg-2);overflow:hidden}
+.cvdoc__frame object,.cvdoc__frame iframe{width:100%;height:100%;border:0;display:block}
+.cvdoc__fallback{display:grid;place-content:center;gap:1rem;height:100%;padding:2rem;text-align:center}
+.cvdoc__fallback p{font-family:var(--font-serif);color:var(--ink-2);max-width:40ch}
+.cvdoc__actions{margin-top:1.6rem;display:flex;gap:.75rem;flex-wrap:wrap}
+
+@media (max-width:620px){
+  .arch__group{grid-template-columns:1fr;gap:.9rem}
 }

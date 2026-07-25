@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Curriculum vitae, Mara Vesely</title> <!-- EDIT -->
+<meta name="description" content="Curriculum vitae of Mara Vesely." /> <!-- EDIT -->
+<meta name="theme-color" content="#fafaf8" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231d1d1b'/%3E%3Ctext x='16' y='21' font-family='Georgia,serif' font-size='13' fill='%23fafaf8' text-anchor='middle'%3EMV%3C/text%3E%3C/svg%3E" />
+<link rel="stylesheet" href="styles.css" />
+
+<!--
+  This page renders your LaTeX CV as a PDF.
+  Compile your .tex to a PDF (Overleaf: Download > PDF, or run: pdflatex cv.tex),
+  name the file cv.pdf, and place it in the repository root next to this file.
+  The <object> below displays it; the buttons let visitors download or open it.
+-->
+</head>
+
+<body>
+<a class="skip" href="#cvmain">Skip to content</a>
+<span id="top-sentinel" aria-hidden="true"></span>
+
+<header class="nav" id="nav">
+  <div class="wrap nav__in">
+    <a class="brand" href="index.html">Mara Vesely</a> <!-- EDIT -->
+    <nav class="nav__right" aria-label="Sections">
+      <div class="nav__links">
+        <a class="link active" href="cv.html" aria-current="page">CV</a>
+        <a class="link" href="writing.html">Writing</a>
+        <a class="link" href="index.html#photos">Photos</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main class="page" id="cvmain">
+  <div class="wrap">
+    <h1 class="page__title reveal">Curriculum vitae</h1>
+    <p class="page__intro reveal">The full document, rendered from LaTeX. You can also download it as a PDF.</p>
+
+    <div class="cvdoc reveal">
+      <div class="cvdoc__frame">
+        <!-- EDIT: cv.pdf is the compiled output of your LaTeX source, placed in the repo root -->
+        <object data="cv.pdf" type="application/pdf" aria-label="Curriculum vitae PDF">
+          <div class="cvdoc__fallback">
+            <p>The CV is not showing inline here. Your browser may not display PDFs in the page, or <strong>cv.pdf</strong> has not been added to the repository yet.</p>
+            <a class="btn" href="cv.pdf">Open cv.pdf <span class="btn__a" aria-hidden="true">-&gt;</span></a>
+          </div>
+        </object>
+      </div>
+      <div class="cvdoc__actions">
+        <a class="btn btn--primary" href="cv.pdf" download>Download PDF <span class="btn__a" aria-hidden="true">-&gt;</span></a>
+        <a class="btn" href="cv.pdf" target="_blank" rel="noopener">Open in new tab <span class="btn__a" aria-hidden="true">-&gt;</span></a>
+      </div>
+    </div>
+
+    <a class="page__back link" href="index.html">Back to home</a>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <h2 class="foot__title reveal">Get in touch</h2>
+    <a class="foot__mail link reveal" href="mailto:mara@example.com">mara@example.com</a> <!-- EDIT -->
+    <div class="foot__row reveal">
+      <a class="link" href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
+      <a class="link" href="https://scholar.google.com/" target="_blank" rel="noopener">Scholar</a>
+      <a class="link" href="https://bsky.app/" target="_blank" rel="noopener">Bluesky</a>
+    </div>
+    <div class="foot__legal">© <span id="year"></span> Mara Vesely</div> <!-- EDIT -->
+  </div>
+</footer>
+
+<script src="script.js" defer></script>
+</body>
+</html>
