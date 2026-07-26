@@ -7,17 +7,20 @@
 
   /* reveal on scroll (IntersectionObserver, staggered by position within a shared parent) */
   var reveals = [].slice.call(document.querySelectorAll('.reveal'));
+ var revealAll = function () { reveals.forEach(function (el) { el.classList.add('in'); }); };
   if (reduce || !('IntersectionObserver' in window)) {
-    reveals.forEach(function (el) { el.classList.add('in'); });
+    revealAll();
   } else {
+    var revealed = false;
     reveals.forEach(function (el) {
       var sibs = [].slice.call(el.parentNode.children).filter(function (c) { return c.classList.contains('reveal'); });
       el.style.setProperty('--d', Math.min(sibs.indexOf(el) * 80, 400) + 'ms');
     });
     var io = new IntersectionObserver(function (list) {
-      list.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+      list.forEach(function (e) { if (e.isIntersecting) { revealed = true; e.target.classList.add('in'); io.unobserve(e.target); } });
     }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
     reveals.forEach(function (el) { io.observe(el); });
+    setTimeout(function () { if (!revealed) revealAll(); }, 2000);
   }
 
   /* sticky-nav background: toggle when a top sentinel leaves the viewport (no scroll listener) */
